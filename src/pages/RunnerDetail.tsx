@@ -1,12 +1,15 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Download, FileText, Image as ImageIcon, Video } from "lucide-react";
-import { runners, executions, sampleLogs, estimateDurationSec } from "@/data/mock";
+import { ArrowLeft, ExternalLink, Download, FileText, Image as ImageIcon, Video, Play } from "lucide-react";
+import { runners, sampleLogs, estimateDurationSec } from "@/data/mock";
+import { useExecutionsStore } from "@/hooks/use-executions";
 import { AppHeader } from "@/components/teop/AppHeader";
 import { StatusBadge } from "@/components/teop/StatusBadge";
 import { ExecutionRow } from "@/components/teop/ExecutionRow";
 import { LogViewer } from "@/components/teop/LogViewer";
 import { MetricTile } from "@/components/teop/MetricTile";
+import { ExecuteModal } from "@/components/teop/ExecuteModal";
+import { Button } from "@/components/ui/button";
 import { formatDuration } from "@/lib/format";
 import { Activity, Timer, Target, Gauge } from "lucide-react";
 import {
@@ -162,6 +165,7 @@ const RunnerDetail = () => {
           </div>
         </section>
       </main>
+      <ExecuteModal runner={runner} open={open} onOpenChange={setOpen} />
     </div>
   );
 };
