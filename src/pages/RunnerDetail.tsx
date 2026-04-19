@@ -22,11 +22,13 @@ import {
 const RunnerDetail = () => {
   const { id = "" } = useParams();
   const runner = runners.find((r) => r.id === id);
+  const allExec = useExecutionsStore();
   const runnerExecutions = useMemo(
-    () => executions.filter((e) => e.runnerId === id).sort((a, b) => b.buildNumber - a.buildNumber),
-    [id],
+    () => allExec.filter((e) => e.runnerId === id).sort((a, b) => b.buildNumber - a.buildNumber),
+    [allExec, id],
   );
-  const [selected, setSelected] = useState(runnerExecutions[0]?.id);
+  const [selected, setSelected] = useState<string | undefined>(runnerExecutions[0]?.id);
+  const [open, setOpen] = useState(false);
   const eta = useMemo(() => (runner ? estimateDurationSec(runner.id) : 0), [runner]);
 
   if (!runner) {
