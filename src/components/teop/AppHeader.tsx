@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { Activity, LayoutDashboard } from "lucide-react";
+import { Activity, LayoutDashboard, ListChecks } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function AppHeader() {
   const { pathname } = useLocation();
-  const onDash = pathname === "/";
+  const isActive = (p: string) => (p === "/" ? pathname === "/" : pathname.startsWith(p));
   return (
     <header className="sticky top-0 z-40 border-b border-border surface/80 backdrop-blur-md">
       <div className="container flex h-14 items-center justify-between">
@@ -20,10 +20,19 @@ export function AppHeader() {
             to="/"
             className={cn(
               "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors",
-              onDash ? "bg-surface-hover text-foreground" : "text-muted-foreground hover:text-foreground",
+              isActive("/") ? "bg-surface-hover text-foreground" : "text-muted-foreground hover:text-foreground",
             )}
           >
             <LayoutDashboard className="h-4 w-4" /> Dashboard
+          </Link>
+          <Link
+            to="/executions"
+            className={cn(
+              "flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors",
+              isActive("/executions") ? "bg-surface-hover text-foreground" : "text-muted-foreground hover:text-foreground",
+            )}
+          >
+            <ListChecks className="h-4 w-4" /> Executions
           </Link>
         </nav>
       </div>
