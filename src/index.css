@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,8 +10,57 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 222 33% 7%;
+    --foreground: 210 40% 96%;
+
+    --surface: 222 28% 10%;
+    --surface-elevated: 222 24% 13%;
+    --surface-hover: 222 22% 16%;
+
+    --card: 222 28% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 28% 11%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 158 76% 52%;
+    --primary-foreground: 222 47% 8%;
+    --primary-glow: 158 80% 60%;
+
+    --secondary: 222 22% 16%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 20% 14%;
+    --muted-foreground: 215 16% 60%;
+
+    --accent: 199 89% 58%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --warning: 38 92% 58%;
+    --warning-foreground: 222 47% 8%;
+
+    --success: 158 76% 52%;
+    --success-foreground: 222 47% 8%;
+
+    --info: 199 89% 58%;
+    --info-foreground: 222 47% 8%;
+
+    --border: 222 20% 18%;
+    --input: 222 20% 16%;
+    --ring: 158 76% 52%;
+
+    --gradient-surface: linear-gradient(180deg, hsl(222 28% 11%), hsl(222 28% 9%));
+    --gradient-success: linear-gradient(135deg, hsl(158 76% 52%), hsl(168 76% 48%));
+    --gradient-fail: linear-gradient(135deg, hsl(0 75% 60%), hsl(15 75% 55%));
+    --shadow-glow: 0 0 24px -4px hsl(158 76% 52% / 0.35);
+    --shadow-card: 0 4px 16px -4px hsl(222 50% 2% / 0.6);
+
+    --radius: 0.6rem;
+
+    --_unused_old: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -100,6 +151,20 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-image:
+      radial-gradient(circle at 0% 0%, hsl(158 76% 52% / 0.06), transparent 40%),
+      radial-gradient(circle at 100% 100%, hsl(199 89% 58% / 0.05), transparent 40%);
+    background-attachment: fixed;
   }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+}
+
+@layer utilities {
+  .surface { background: hsl(var(--surface)); }
+  .surface-elevated { background: hsl(var(--surface-elevated)); }
+  .glow-primary { box-shadow: var(--shadow-glow); }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
 }
