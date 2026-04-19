@@ -155,15 +155,4 @@ class ExecutionEngine {
 
 export const engine = new ExecutionEngine();
 
-export function useExecutions() {
-  // simple subscription hook
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { useSyncExternalStore } = require("react");
-  return useSyncExternalStore(
-    (cb: Listener) => engine.subscribe(cb),
-    () => engine.list(),
-    () => engine.list(),
-  );
-}
-
 export const devices = seedDevices;
